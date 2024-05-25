@@ -4,6 +4,7 @@ platform :ios do
   desc 'Export ipa'
   lane :export_ipa do
 
+    puts "Execute update_xcodeproj"
     update_xcodeproj(
       xcodeproj: ENV['PROJECT_PATH'],
       build_settings: {
