@@ -5,7 +5,7 @@ platform :ios do
   lane :export_ipa do
 
     update_xcodeproj(
-      xcodeproj: 'Unity-iPhone.xcodeproj',
+      xcodeproj: ENV['PROJECT_PATH'],
       build_settings: {
         'OTHER_LDFLAGS' => '-ld64'
       }
