@@ -3,6 +3,14 @@ default_platform(:ios)
 platform :ios do
   desc 'Export ipa'
   lane :export_ipa do
+
+    update_xcodeproj(
+      xcodeproj: 'Unity-iPhone.xcodeproj',
+      build_settings: {
+        'OTHER_LDFLAGS' => '-ld64'
+      }
+    )
+
     decode_file
 
     keychain_password = SecureRandom.uuid
