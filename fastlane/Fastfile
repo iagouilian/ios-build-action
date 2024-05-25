@@ -3,15 +3,6 @@ default_platform(:ios)
 platform :ios do
   desc 'Export ipa'
   lane :export_ipa do
-
-    puts "Execute update_xcodeproj"
-    update_xcodeproj(
-      xcodeproj: ENV['PROJECT_PATH'],
-      build_settings: {
-        'OTHER_LDFLAGS' => '-ld64'
-      }
-    )
-
     decode_file
 
     keychain_password = SecureRandom.uuid
@@ -209,6 +200,7 @@ platform :ios do
       workspace: use_workspace ? ENV['WORKSPACE_PATH'] : nil,
       project: !use_workspace ? ENV['PROJECT_PATH'] : nil,
       configuration: ENV['CONFIGURATION'],
+      xcargs: "OTHER_LDFLAGS='-ld64'",
       scheme: ENV['SCHEME'],
       output_directory: File.dirname(ENV['OUTPUT_PATH']),
       output_name: File.basename(ENV['OUTPUT_PATH']),
