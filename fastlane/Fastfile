@@ -3,9 +3,6 @@ default_platform(:ios)
 platform :ios do
   desc 'Export ipa'
   lane :export_ipa do
-
-    system("chmod -R 777 ~/Library/Developer/Xcode/DerivedData")
-
     decode_file
 
     keychain_password = SecureRandom.uuid
@@ -144,6 +141,7 @@ platform :ios do
           configuration,
           'PRODUCT_BUNDLE_IDENTIFIER'
         )
+      configuration.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
       configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = app_identifier
       if use_export_options && !profile_hash[app_identifier].nil?
         configuration.build_settings['PROVISIONING_PROFILE_SPECIFIER'] =
