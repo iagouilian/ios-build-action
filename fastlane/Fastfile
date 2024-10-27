@@ -4,7 +4,8 @@ platform :ios do
   desc 'Export ipa'
   lane :export_ipa do
     
-    sh "chmod -R 777 ./build/DerivedData"
+    sh "mkdir -p ./build/DerivedData"
+  sh "chmod -R 777 ./build/DerivedData"
     
     decode_file
 
