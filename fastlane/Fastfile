@@ -141,6 +141,7 @@ platform :ios do
           configuration,
           'PRODUCT_BUNDLE_IDENTIFIER'
         )
+      UI.message "set ENABLE_USER_SCRIPT_SANDBOXING"
       configuration.build_settings['ENABLE_USER_SCRIPT_SANDBOXING'] = 'NO'
       configuration.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = app_identifier
       if use_export_options && !profile_hash[app_identifier].nil?
