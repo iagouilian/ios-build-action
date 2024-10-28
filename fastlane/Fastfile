@@ -3,10 +3,7 @@ default_platform(:ios)
 platform :ios do
   desc 'Export ipa'
   lane :export_ipa do
-    
-    sh "mkdir -p ./build/DerivedData"
-  sh "chmod -R 777 ./build/DerivedData"
-    
+        
     decode_file
 
     keychain_password = SecureRandom.uuid
@@ -205,7 +202,7 @@ platform :ios do
       workspace: use_workspace ? ENV['WORKSPACE_PATH'] : nil,
       project: !use_workspace ? ENV['PROJECT_PATH'] : nil,
       configuration: ENV['CONFIGURATION'],
-      xcargs: "ENABLE_USER_SCRIPT_SANDBOXING=NO OTHER_LDFLAGS='-ld64' -derivedDataPath './build/DerivedData'",
+      xcargs: "ENABLE_USER_SCRIPT_SANDBOXING=NO OTHER_LDFLAGS='-ld64'",
       scheme: ENV['SCHEME'],
       output_directory: File.dirname(ENV['OUTPUT_PATH']),
       output_name: File.basename(ENV['OUTPUT_PATH']),
