@@ -3,7 +3,7 @@ default_platform(:ios)
 platform :ios do
   desc 'Export ipa'
   lane :export_ipa do
-    ENV['DEVELOPER_DIR'] = '/Applications/Xcode_16.app/Contents/Developer'
+    
     decode_file
 
     keychain_password = SecureRandom.uuid
